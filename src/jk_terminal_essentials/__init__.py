@@ -29,7 +29,7 @@ STYLE_RESET = "\x1b[0m"
 
 
 
-from .functions import detectTerminalSupportsColors, getTerminalSize
+from .functions import checkTerminalSupportsColors, getTerminalSize
 
 
 
