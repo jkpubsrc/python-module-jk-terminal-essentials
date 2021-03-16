@@ -5,7 +5,7 @@
 	},
 	"meta": {
 		"name": "jk_terminal_essentials",
-		"version": "0.2021.3.7",
+		"version": "0.2021.3.16",
 		"packageClass": "python-module",
 		"language": "python3",
 		"development_status": "alpha",
@@ -13,7 +13,7 @@
 		"keywords": [
 			"..."
 		],
-		"description": "This module provides essential constants and information about the terminal. This module is intended for implementing CLI tools and other applications running in a terminal..",
+		"description": "This module provides essential constants and information about the terminal. This module is intended for implementing CLI tools and other applications running in a terminal.",
 		"authors": [
 			{
 				"name": "Jürgen Knauth",
