@@ -25,6 +25,7 @@ class Spinner(object):
 	#
 	def __init__(self, maximum:int = 0, bColor:bool = True):
 		assert isinstance(maximum, int)
+		assert maximum >= 0
 		assert isinstance(bColor, bool)
 
 		# ----
@@ -54,6 +55,13 @@ class Spinner(object):
 	################################################################################################################################
 	## Public Methods
 	################################################################################################################################
+
+	def setMaximum(self, maximum:int = 0):
+		assert isinstance(maximum, int)
+		assert maximum >= 0
+
+		self.__maximum = maximum
+	#
 
 	def spin(self, action:str = None, extraText:str = None, bPrintPercent:bool = True):
 		outputList = []

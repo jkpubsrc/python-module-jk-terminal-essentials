@@ -50,6 +50,24 @@ FGCOLOR_LIGHT_BLUE = "\x1b[94m"
 FGCOLOR_LIGHT_MAGENTA = "\x1b[95m"
 FGCOLOR_LIGHT_CYAN = "\x1b[96m"
 FGCOLOR_WHITE = "\x1b[97m"
+
+BGCOLOR_BLACK = "\x1b[40m"
+BGCOLOR_RED = "\x1b[41m"
+BGCOLOR_GREEN = "\x1b[42m"
+BGCOLOR_YELLOW = "\x1b[43m"
+BGCOLOR_BLUE = "\x1b[44m"
+BGCOLOR_MAGENTA = "\x1b[45m"
+BGCOLOR_CYAN = "\x1b[46m"
+BGCOLOR_LIGHT_GRAY = "\x1b[47m"
+
+BGCOLOR_DARK_GRAY = "\x1b[100m"
+BGCOLOR_LIGHT_RED = "\x1b[101m"
+BGCOLOR_LIGHT_GREEN = "\x1b[102m"
+BGCOLOR_LIGHT_YELLOW = "\x1b[103m"
+BGCOLOR_LIGHT_BLUE = "\x1b[104m"
+BGCOLOR_LIGHT_MAGENTA = "\x1b[105m"
+BGCOLOR_LIGHT_CYAN = "\x1b[106m"
+BGCOLOR_WHITE = "\x1b[107m"
 ```
 
 ### Check for Color Support
@@ -60,14 +78,10 @@ To check if the current terminal supports colors:
 print(te.checkTerminalSupportsColors())
 ```
 
-Contact Information
+Author(s)
 -------------------
 
-This work is Open Source. This enables you to use this work for free.
-
-Please have in mind this also enables you to contribute. We, the subspecies of software developers, can create great things. But the more collaborate, the more fantastic these things can become. Therefore Feel free to contact the author(s) listed below, either for giving feedback, providing comments, hints, indicate possible collaborations, ideas, improvements. Or maybe for "only" reporting some bugs:
-
-* Jürgen Knauth: jknauth@uni-goettingen.de, pubsrc@binary-overflow.de
+* Jürgen Knauth: pubsrc@binary-overflow.de
 
 License
 -------
