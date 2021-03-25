@@ -7,9 +7,20 @@ import re
 
 
 
+
+from .constants import ALL_BGCOLORS, ALL_FGCOLORS, STYLE_RESET
+
+
+
+
+
+
+
 def getTerminalSize() -> tuple:
 	return tuple(os.get_terminal_size())
 #
+
+
 
 
 
@@ -32,6 +43,22 @@ def checkTerminalSupportsColors() -> bool:
 
 
 
+
+_REPL_MAP = None
+
+def stripColors(text:str) -> str:
+	global _REPL_MAP
+	if _REPL_MAP is None:
+		_REPL_MAP = []
+		_REPL_MAP.extend(ALL_BGCOLORS)
+		_REPL_MAP.extend(ALL_FGCOLORS)
+		_REPL_MAP.append(STYLE_RESET)
+
+	for k in _REPL_MAP:
+		text = text.replace(k, "")
+
+	return text
+#
 
 
 

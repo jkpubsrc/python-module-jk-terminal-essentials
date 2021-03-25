@@ -34,7 +34,7 @@ setup(
 	packages = [
 		"jk_terminal_essentials",
 	],
-	version = "0.2021.3.23",
+	version = "0.2021.3.25",
 	zip_safe = False,
 	long_description = readme(),
 	long_description_content_type="text/markdown",

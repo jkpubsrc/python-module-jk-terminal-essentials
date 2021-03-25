@@ -4,3 +4,6 @@
 * 2021-03-23
 	* Added: Background colors
 
+* 2021-03-25
+	* Added: stripColors()
+
