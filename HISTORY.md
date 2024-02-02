@@ -7,3 +7,6 @@
 * 2021-03-25
 	* Added: stripColors()
 
+* 2024-02-02
+	* Improved: getTerminalSize()
+

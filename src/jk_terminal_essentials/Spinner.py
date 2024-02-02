@@ -12,6 +12,9 @@ from .constants import *
 
 
 
+#
+# This is a stateful object that can display a spinner with descriptive text to represent activity progress.
+#
 class Spinner(object):
 
 	_CHARACTERS = "|/-\\"

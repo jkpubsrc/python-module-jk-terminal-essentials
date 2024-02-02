@@ -5,11 +5,11 @@
 	},
 	"meta": {
 		"name": "jk_terminal_essentials",
-		"version": "0.2021.3.25",
+		"version": "0.2024.2.2",
 		"packageClass": "python-module",
 		"language": "python3",
-		"development_status": "alpha",
-		"license": "proprietary",
+		"development_status": "stable",
+		"license": "Apache2",
 		"keywords": [
 			"..."
 		],
@@ -31,7 +31,7 @@
 	},
 	"source": {
 		"packages": [
-			"jk_terminal_essentials"
+			"jk_terminal_essentials",
 		],
 		"extra_data_files": [
 		],

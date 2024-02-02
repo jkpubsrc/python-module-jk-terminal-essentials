@@ -9,6 +9,7 @@ import re
 
 
 from .constants import ALL_BGCOLORS, ALL_FGCOLORS, STYLE_RESET
+from ._TerminalSizeHelper import _TerminalSizeHelper
 
 
 
@@ -16,8 +17,10 @@ from .constants import ALL_BGCOLORS, ALL_FGCOLORS, STYLE_RESET
 
 
 
-def getTerminalSize() -> tuple:
-	return tuple(os.get_terminal_size())
+
+def getTerminalSize() -> os.terminal_size:
+	# return tuple(os.get_terminal_size())
+	return _TerminalSizeHelper.getTerminalSize()
 #
 
 
