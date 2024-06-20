@@ -8,7 +8,7 @@ This module provides essential constants and information about the terminal. Thi
 
 Information about this module can be found here:
 
-* [github.org](https://github.com/jkpubsrc/....)
+* [github.com](https://github.com/jkpubsrc/python-module-jk-terminal-essentials)
 * [pypi.python.org](https://pypi.python.org/pypi/jk_terminal_essentials)
 
 How to use this module
