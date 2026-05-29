@@ -1,7 +1,7 @@
 ﻿
 
 
-__version__ = "0.2026.5.29.1"
+__version__ = "0.2026.5.29.2"
 
 
 
@@ -12,6 +12,7 @@ from .functions import checkTerminalSupportsColors, getTerminalSize, getCursorPo
 
 from .Spinner import Spinner
 from .SpinnerChar import SpinnerChar
+from .ProgressBar import ProgressBar
 
 
 

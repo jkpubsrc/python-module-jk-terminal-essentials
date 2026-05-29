@@ -14,4 +14,5 @@
 	* Improved: getTerminalSize()
 	* Added: SpinnerChar
 	* Added: getCursorPosition()
+	* Added: ProgressBar
 
