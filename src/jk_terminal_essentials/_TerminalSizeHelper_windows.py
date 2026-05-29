@@ -144,7 +144,7 @@ class _TerminalSizeHelper_windows(object):
 	#
 
 	@staticmethod
-	def getCusorPosition() -> tuple[int,int]:
+	def getCusorPosition() -> terminal_cursor_position:
 		if _handle is None:
 			raise Exception()
 

@@ -34,7 +34,7 @@ def getCursorPosition() -> terminal_cursor_position:
 		return _TerminalSizeHelper_windows.getCusorPosition()
 	else:
 		from ._TerminalSizeHelper_posix_ioctl import _TerminalSizeHelper_posix_ioctl
-		return _TerminalSizeHelper_posix_ioctl.getTerminalSize()
+		return _TerminalSizeHelper_posix_ioctl.getCusorPosition()
 #
 
 

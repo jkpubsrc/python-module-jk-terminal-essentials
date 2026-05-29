@@ -110,7 +110,7 @@ class _TerminalSizeHelper_posix_ioctl(object):
 			termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
 
 		_row, _col = map(int, response.lstrip("\x1b[").rstrip("R").split(";"))
-		return terminal_cursor_position(_col, _row)
+		return terminal_cursor_position(_col - 1, _row - 1)
 
 	#
 
