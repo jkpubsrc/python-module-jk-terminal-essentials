@@ -1,7 +1,5 @@
 
 
-
-
 import os
 import typing
 
@@ -17,7 +15,11 @@ from .constants import *
 #
 class Spinner(object):
 
-	_CHARACTERS = "|/-\\"
+	################################################################################################################################
+	## Constants
+	################################################################################################################################
+
+	__CHARACTERS = "|/-\\"
 
 	################################################################################################################################
 	## Constructor
@@ -72,7 +74,7 @@ class Spinner(object):
 		if action:
 			outputList.append(self.colorAction + action + self.__resetStyle)
 
-		outputList.append(self.colorSpinner + Spinner._CHARACTERS[self.__n] + self.__resetStyle)
+		outputList.append(self.colorSpinner + Spinner.__CHARACTERS[self.__n] + self.__resetStyle)
 		self.__n = (self.__n + 1) % 4
 
 		if (self.__maximum > 0) and bPrintPercent:

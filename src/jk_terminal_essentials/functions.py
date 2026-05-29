@@ -9,9 +9,13 @@ import re
 
 
 from .constants import ALL_BGCOLORS, ALL_FGCOLORS, STYLE_RESET
-from ._TerminalSizeHelper import _TerminalSizeHelper
+from .terminal_cursor_position import terminal_cursor_position
+from ._TerminalSizeHelper_posix_ioctl import _TerminalSizeHelper_posix_ioctl
+from ._TerminalSizeHelper_shutil import _TerminalSizeHelper_shutil
+from ._TerminalSizeHelper_windows import _TerminalSizeHelper_windows
 
 
+_bRunningOnWindows = os.name == "nt"
 
 
 
@@ -19,8 +23,18 @@ from ._TerminalSizeHelper import _TerminalSizeHelper
 
 
 def getTerminalSize() -> os.terminal_size:
-	# return tuple(os.get_terminal_size())
-	return _TerminalSizeHelper.getTerminalSize()
+	return _TerminalSizeHelper_shutil.getTerminalSize()
+#
+
+
+
+
+
+def getCursorPosition() -> terminal_cursor_position:
+	if _bRunningOnWindows:
+		return _TerminalSizeHelper_windows.getCusorPosition()
+	else:
+		return _TerminalSizeHelper_posix_ioctl.getTerminalSize()
 #
 
 

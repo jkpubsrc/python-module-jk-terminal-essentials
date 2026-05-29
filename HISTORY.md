@@ -10,3 +10,8 @@
 * 2024-02-02
 	* Improved: getTerminalSize()
 
+* 2026-05-29
+	* Improved: getTerminalSize()
+	* Added: SpinnerChar
+	* Added: getCursorPosition()
+

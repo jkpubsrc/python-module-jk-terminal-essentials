@@ -1,12 +1,17 @@
 ﻿
 
 
-__version__ = "0.2024.2.2"
+__version__ = "0.2026.5.29"
 
 
 
 from .constants import *
 
-from .functions import checkTerminalSupportsColors, getTerminalSize, stripColors
+from .terminal_cursor_position import terminal_cursor_position
+from .functions import checkTerminalSupportsColors, getTerminalSize, getCursorPosition, stripColors
 
 from .Spinner import Spinner
+from .SpinnerChar import SpinnerChar
+
+
+

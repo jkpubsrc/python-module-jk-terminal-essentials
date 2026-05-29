@@ -2,13 +2,52 @@
 
 import os
 import typing
-import os
 import struct
-import platform
 import subprocess
+import ctypes
+import ctypes.wintypes
+
+from .terminal_cursor_position import terminal_cursor_position
 
 
 
+
+
+
+# Windows API structures
+
+class COORD(ctypes.Structure):
+	_fields_ = [
+		("X", ctypes.wintypes.SHORT),
+		("Y", ctypes.wintypes.SHORT),
+	]
+#
+
+class SMALL_RECT(ctypes.Structure):
+	_fields_ = [
+		("Left", ctypes.wintypes.SHORT),
+		("Top", ctypes.wintypes.SHORT),
+		("Right", ctypes.wintypes.SHORT),
+		("Bottom", ctypes.wintypes.SHORT),
+	]
+#
+
+class CONSOLE_SCREEN_BUFFER_INFO(ctypes.Structure):
+	_fields_ = [
+		("dwSize", COORD),
+		("dwCursorPosition", COORD),
+		("wAttributes", ctypes.wintypes.WORD),
+		("srWindow", SMALL_RECT),
+		("dwMaximumWindowSize", COORD),
+	]
+#
+
+# Get handle to stdout
+
+try:
+	_handle = ctypes.windll.kernel32.GetStdHandle(-11)  # STD_OUTPUT_HANDLE
+except:
+	_handle = None
 
 
 
@@ -17,7 +56,7 @@ import subprocess
 #
 # Static helper class to provide terminal width and height
 #
-class _TerminalSizeHelper(object):
+class _TerminalSizeHelper_windows(object):
 
 	################################################################################################################################
 	## Constructor
@@ -63,6 +102,8 @@ class _TerminalSizeHelper(object):
 		return None
 	#
 
+	# --------------------------------------------------------------------------------------------------------------------------------
+
 	#
 	# Main entry point for determining Windows terminal size
 	#
@@ -75,62 +116,13 @@ class _TerminalSizeHelper(object):
 
 		# ----
 
-		ret = _TerminalSizeHelper.____tryGetTerminalSize_windll()
+		ret = _TerminalSizeHelper_windows.____tryGetTerminalSize_windll()
 		if ret:
 			return ret
 
-		ret = _TerminalSizeHelper.____tryGetTerminalSize_tput()
+		ret = _TerminalSizeHelper_windows.____tryGetTerminalSize_tput()
 		if ret:
 			return ret
-
-		return None
-	#
-
-	################################################################################################################################
-
-	@staticmethod
-	def ____ioctl_GWINSZ(fd) -> typing.Union[os.terminal_size,None]:
-		try:
-			import fcntl
-			import termios
-			cr = struct.unpack("hh", fcntl.ioctl(fd, termios.TIOCGWINSZ, "1234"))
-			return os.terminal_size((cr[0], cr[1]))
-		except:
-			pass
-
-		return None
-	#
-
-	#
-	# Main entry point for determining POSIX terminal size
-	#
-	@staticmethod
-	def __posix_getTerminalSize() -> typing.Union[os.terminal_size,None]:
-		try:
-			return os.get_terminal_size()
-		except:
-			pass
-
-		# ----
-
-		ret = _TerminalSizeHelper.____ioctl_GWINSZ(0)
-		if ret:
-			return ret
-
-		ret = _TerminalSizeHelper.____ioctl_GWINSZ(1)
-		if ret:
-			return ret
-
-		ret = _TerminalSizeHelper.____ioctl_GWINSZ(2)
-		if ret:
-			return ret
-
-		try:
-			# NOTE: ctermid() is not available on all platforms
-			with os.open(os.ctermid(), os.O_RDONLY) as fin:
-				return _TerminalSizeHelper.____ioctl_GWINSZ(fin)
-		except:
-			pass
 
 		return None
 	#
@@ -145,19 +137,29 @@ class _TerminalSizeHelper(object):
 
 	@staticmethod
 	def getTerminalSize() -> os.terminal_size:
-		ret = None
-		current_os = platform.system().lower()
-		if current_os == "windows":
-			ret = _TerminalSizeHelper.__windows_getTerminalSize()
-		elif current_os in ( "linux", "darwin" ) or current_os.startswith("cygwin"):
-			ret = _TerminalSizeHelper.__posix_getTerminalSize()
+		ret = _TerminalSizeHelper_windows.__windows_getTerminalSize()
+		if ret is None:
+			return os.terminal_size((80, 24))
+		return ret
+	#
+
+	@staticmethod
+	def getCusorPosition() -> tuple[int,int]:
+		if _handle is None:
+			raise Exception()
+
+		csbi = CONSOLE_SCREEN_BUFFER_INFO()
+		success = ctypes.windll.kernel32.GetConsoleScreenBufferInfo(
+			_handle,
+			ctypes.byref(csbi)
+		)
+
+		if success:
+			x = csbi.dwCursorPosition.X
+			y = csbi.dwCursorPosition.Y
+			return terminal_cursor_position(x, y)
 		else:
-			pass
-
-		if ret:
-			return ret
-
-		return os.terminal_size((80, 25))
+			return terminal_cursor_position(-1, -1)
 	#
 
 #
